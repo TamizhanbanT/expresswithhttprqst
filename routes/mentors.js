@@ -30,6 +30,27 @@ router.get('/', (req, res) => {
     });
 });
 
+// getting individual mentor details
+
+router.get('/:mentorId',(req,res)=>{
+    const {mentorId}=req.params;
+    const query='select * from mentors where mentorId=?'
+    db.query(query,[mentorId],(err,result)=>{
+        if(err){
+            console.error("error by retrieving mentor",err)
+            res.status(500).json({message:"failed to retrieve mentor"});
+            return;
+        }
+        if(result.length===0){
+            console.log(result)
+            res.status(404).json({message:"mentor not found"});
+            return
+        }
+        res.json(result[0])
+    }
+    )
+})
+
 
 //post request
 
