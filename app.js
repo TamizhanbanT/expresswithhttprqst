@@ -46,6 +46,10 @@ app.use('/students', require('./routes/students'));
 // Import the Mentor route (move this below the middleware)
 app.use('/mentors', require('./routes/mentors'));
 
+// Import the classes route (move this below the middleware)
+app.use('/class', require('./routes/classes'));
+
+
 // Catch 404 errors and forward them to the error handler
 app.use(function(req, res, next) {
     const err = new Error('Not Found');
